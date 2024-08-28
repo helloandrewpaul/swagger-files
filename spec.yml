@@ -1,0 +1,740 @@
+openapi: 3.0.0
+info:
+  title: crAPI_Swagger
+  version: 1.0.0
+servers:
+- url: http://crapi.apisec.ai
+  description: The default server
+paths:
+  /identity/api/v2/user/dashboard:
+    get:
+      summary: GET dashboard
+      responses:
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                  status:
+                    type: number
+                  error:
+                    type: string
+                  message:
+                    type: string
+                  path:
+                    type: string
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  number:
+                    type: string
+                  picture_url:
+                    type: object
+                  video_url:
+                    type: object
+                  video_name:
+                    type: object
+                  available_credit:
+                    type: number
+                  video_id:
+                    type: number
+                  role:
+                    type: string
+  /identity/api/auth/signup:
+    post:
+      summary: POST signup
+      responses:
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  status:
+                    type: number
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  status:
+                    type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                number:
+                  type: string
+                password:
+                  type: string
+  /identity/api/auth/login:
+    post:
+      summary: POST login
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  type:
+                    type: string
+                  message:
+                    type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+  /identity/api/v2/user/pictures:
+    post:
+      summary: POST pictures
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  status:
+                    type: string
+                  available_credit:
+                    type: number
+                  user:
+                    type: object
+                  picture:
+                    type: string
+      requestBody:
+        content:
+          null:
+            schema:
+              type: object
+              properties: {}
+  /identity/api/v2/user/change-email:
+    post:
+      summary: POST change-email
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  status:
+                    type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                old_email:
+                  type: string
+                new_email:
+                  type: string
+  /identity/api/v2/user/verify-email-token:
+    post:
+      summary: POST verify-email-token
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  status:
+                    type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                new_email:
+                  type: string
+                token:
+                  type: string
+  /community/api/v2/community/posts/recent:
+    get:
+      summary: GET recent
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                    content:
+                      type: string
+                    author:
+                      type: object
+                      properties:
+                        nickname:
+                          type: string
+                        email:
+                          type: string
+                        vehicleid:
+                          type: string
+                        profile_pic_url:
+                          type: string
+                        created_at:
+                          type: string
+                    comments:
+                      type: array
+                      items: {}
+                    authorid:
+                      type: number
+                    CreatedAt:
+                      type: string
+  /community/api/v2/community/posts/db9ELMZamjC9dnLdMYsNuX:
+    get:
+      summary: GET db9elmzamjc9dnldmysnux
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      nickname:
+                        type: string
+                      email:
+                        type: string
+                      vehicleid:
+                        type: string
+                      profile_pic_url:
+                        type: string
+                      created_at:
+                        type: string
+                  comments:
+                    type: array
+                    items: {}
+                  authorid:
+                    type: number
+                  CreatedAt:
+                    type: string
+  /community/api/v2/community/posts/db9ELMZamjC9dnLdMYsNuX/comment:
+    post:
+      summary: POST comment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      nickname:
+                        type: string
+                      email:
+                        type: string
+                      vehicleid:
+                        type: string
+                      profile_pic_url:
+                        type: string
+                      created_at:
+                        type: string
+                  comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        content:
+                          type: string
+                        CreatedAt:
+                          type: string
+                        author:
+                          type: object
+                          properties:
+                            nickname:
+                              type: string
+                            email:
+                              type: string
+                            vehicleid:
+                              type: string
+                            profile_pic_url:
+                              type: string
+                            created_at:
+                              type: string
+                  authorid:
+                    type: number
+                  CreatedAt:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+  /community/api/v2/community/posts:
+    post:
+      summary: POST posts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      nickname:
+                        type: string
+                      email:
+                        type: string
+                      vehicleid:
+                        type: string
+                      profile_pic_url:
+                        type: string
+                      created_at:
+                        type: string
+                  comments:
+                    type: array
+                    items: {}
+                  authorid:
+                    type: number
+                  CreatedAt:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+  /workshop/api/shop/products:
+    get:
+      summary: GET products
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        name:
+                          type: string
+                        price:
+                          type: string
+                        image_url:
+                          type: string
+                  credit:
+                    type: number
+  /workshop/api/shop/orders:
+    post:
+      summary: POST orders
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  message:
+                    type: string
+                  credit:
+                    type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: number
+                quantity:
+                  type: number
+  /workshop/api/shop/orders/all:
+    get:
+      summary: GET all
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        user:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                            number:
+                              type: string
+                        product:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            name:
+                              type: string
+                            price:
+                              type: string
+                            image_url:
+                              type: string
+                        quantity:
+                          type: number
+                        status:
+                          type: string
+                        created_on:
+                          type: string
+  /workshop/api/shop/orders/return_order:
+    post:
+      summary: POST return_order
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  qr_code_url:
+                    type: string
+                  order:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      user:
+                        type: object
+                        properties:
+                          email:
+                            type: string
+                          number:
+                            type: string
+                      product:
+                        type: object
+                        properties:
+                          id:
+                            type: number
+                          name:
+                            type: string
+                          price:
+                            type: string
+                          image_url:
+                            type: string
+                      quantity:
+                        type: number
+                      status:
+                        type: string
+                      created_on:
+                        type: string
+      parameters:
+      - name: order_id
+        in: query
+        required: false
+        schema:
+          type: number
+  /workshop/api/shop/return_qr_code:
+    get:
+      summary: GET return_qr_code
+      responses:
+        '200':
+          description: OK
+          content: {}
+  /community/api/v2/coupon/validate-coupon:
+    post:
+      summary: POST validate-coupon
+      responses:
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                coupon_code:
+                  type: string
+  /identity/api/v2/vehicle/resend_email:
+    post:
+      summary: POST resend_email
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  status:
+                    type: number
+  /identity/api/v2/vehicle/add_vehicle:
+    post:
+      summary: POST add_vehicle
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  status:
+                    type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                vin:
+                  type: string
+                pincode:
+                  type: string
+  /workshop/api/mechanic:
+    get:
+      summary: GET mechanic
+      responses:
+        '200':
+          description: OK
+          content: {}
+  /workshop/api/mechanic/:
+    get:
+      summary: GET mechanic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mechanics:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        mechanic_code:
+                          type: string
+                        user:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                            number:
+                              type: string
+  /workshop/api/merchant/contact_mechanic:
+    post:
+      summary: POST contact_mechanic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response_from_mechanic_api:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      sent:
+                        type: number
+                      report_link:
+                        type: string
+                  status:
+                    type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mechanic_code:
+                  type: string
+                problem_details:
+                  type: string
+                vin:
+                  type: string
+                mechanic_api:
+                  type: string
+                repeat_request_if_failed:
+                  type: number
+                number_of_repeats:
+                  type: number
+  /identity/api/v2/vehicle/cc0969ab-28ac-4ae4-bc4c-7700d79b6883/location:
+    get:
+      summary: GET location
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  carId:
+                    type: string
+                  vehicleLocation:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      latitude:
+                        type: string
+                      longitude:
+                        type: string
+                  fullName:
+                    type: string
+x-path-templates:
+# Remove the ignore: prefix to generate an endpoint with its URL
+# Lines that are closer to the top take precedence, the matching is greedy
+- ignore:/
+- ignore:/change-email
+- ignore:/identity/api/v2/vehicle/vehicles
+- ignore:/images/mercedesbenz-gla.jpg
+- ignore:/login
+- ignore:/static/css/2.a2026422.chunk.css
+- ignore:/static/css/2.a2026422.chunk.css.map
+- ignore:/static/css/main.fca8df6d.chunk.css
+- ignore:/static/css/main.fca8df6d.chunk.css.map
+- ignore:/static/js/2.e7093047.chunk.js
+- ignore:/static/js/2.e7093047.chunk.js.map
+- ignore:/static/js/main.fd3f1560.chunk.js
+- ignore:/static/js/main.fd3f1560.chunk.js.map
+- ignore:/static/media/default_profile_pic.24d66af2.png
+- ignore:/string
+- ignore:/vihgolbjdfgcss16ytezt57f46axynmc.oastify.com
+- ignore::8025/
+- ignore::8025/api/v1/messages/8BLlpZvu5BJ3fiFTZUs_d5JosUKX4Dbl_DdwXhGLcTE=@mailhog.example
+- ignore::8025/api/v1/messages/JlX5dRREDgRA7BwSGXI0NAogu46bMFjd4DyCinvcbOw=@mailhog.example
+- ignore::8025/api/v1/messages/PUiWRLkglBuaassSaVEg_t3QMuo1PtsZkDL9K74hFgA=@mailhog.example
+- ignore::8025/api/v2/jim
+- ignore::8025/api/v2/messages
+- ignore::8025/api/v2/websocket
+- ignore::8025/css/jquery-ui-1.10.4-smoothness.css
+- ignore::8025/css/style.css
+- ignore::8025/fonts/glyphicons-halflings-regular.woff2
+- ignore::8025/images/github.png
+- ignore::8025/images/hog.png
+- ignore::8025/js/angular-1.3.8.js
+- ignore::8025/js/bootstrap-3.3.2.min.js
+- ignore::8025/js/controllers.js
+- ignore::8025/js/filesize-3.1.2.min.js
+- ignore::8025/js/jquery-1.11.0.min.js
+- ignore::8025/js/jquery-ui-1.10.4.min.js
+- ignore::8025/js/moment-2.8.4.js
+- ignore::8025/js/strutil.js
+- ignore::8025/css/bootstrap-3.3.2.min.css
